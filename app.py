@@ -51,9 +51,9 @@ def pageNotFound(error):
     else:
         return '<p>request empty</p>'
 
-@app.errorhandler(500)
-def internalerror(error):
-    return render_template('home.html')
+# @app.errorhandler(500)
+# def internalerror(error):
+#     return render_template('home.html')
 if __name__ == "__main__":
     app.run()
     api = API()
