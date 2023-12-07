@@ -50,6 +50,8 @@ def pageNotFound(error):
     resp = request.args.get('response')
     if (resp != None):
         return "<p>"+resp+"</p>"
+    else:
+        return redirect(request.url, code=302)
 
 @app.errorhandler(404)
 def internalerror(error):
