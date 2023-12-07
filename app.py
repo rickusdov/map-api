@@ -19,22 +19,30 @@ def get_route():
     requestJson = format_req(cords)
     api = API()
     api.set_json(requestJson)
-
-    return redirect('/route?response='+str(api.get_order()),302)
+    if api.set_json(requestJson) != 0:
+        return redirect('/route?response='+str(api.get_distance()),302)
+    else:
+        return redirect('/route?response=0', 302)
 @app.route('/dist')
 def get_distance():
     cords = request.args.get('cords')
     requestJson = format_req(cords)
     api = API()
     api.set_json(requestJson)
-    return redirect('/home.html?response='+str(api.get_distance()),302)
+    if api.set_json(requestJson) != 0:
+        return redirect('/dist?response='+str(api.get_distance()),302)
+    else:
+        return redirect('/dist?response=0', 302)
 @app.route('/dur')
 def get_duration():
     cords = request.args.get('cords')
     requestJson = format_req(cords)
     api = API()
     api.set_json(requestJson)
-    return redirect('/dur?response='+str(api.get_duration()),302)
+    if api.set_json(requestJson) != 0:
+        return redirect('/dur?response=' + str(api.get_duration()), 302)
+    else:
+        return redirect('/dur?response=0', 302)
 @app.errorhandler(404)
 def pageNotFound(error):
     resp = request.args.get('response')
