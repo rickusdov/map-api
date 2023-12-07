@@ -43,7 +43,7 @@ def get_duration():
         return redirect('/dur?response=' + str(api.get_duration()), 302)
     else:
         return redirect('/dur?response=0', 302)
-@app.errorhandler(404)
+@app.errorhandler(500)
 def pageNotFound(error):
     resp = request.args.get('response')
     if (resp != ''):
@@ -51,9 +51,9 @@ def pageNotFound(error):
     else:
         return '<p>request empty</p>'
 
-# @app.errorhandler(500)
-# def internalerror(error):
-#     return render_template('home.html')
+@app.errorhandler(404)
+def internalerror(error):
+    return render_template('home.html')
 if __name__ == "__main__":
     app.run()
     api = API()
