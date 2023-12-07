@@ -31,7 +31,7 @@ def get_distance():
     api = API()
     api.set_json(requestJson)
     if api.set_json(requestJson) != 0:
-        print(api.get_distance())
+        #print(api.get_distance())
         return redirect('/dist?response='+str(api.get_distance()),302)
     else:
         return redirect('/dist?response=0', 302)
@@ -50,8 +50,6 @@ def pageNotFound(error):
     resp = request.args.get('response')
     if (resp != None):
         return "<p>"+resp+"</p>"
-    else:
-        return render_template('home.html')
 
 @app.errorhandler(404)
 def internalerror(error):

@@ -6,7 +6,7 @@ class API:
 
     def set_json(self, request):
         self.request_json = json.loads(request)
-        print(self.request_json)
+        #print(self.request_json)
         return self.request_json
 
 
@@ -41,7 +41,7 @@ class API:
         r = requests.get(url)
         results = r.json()
         temp = ''
-        print(results['result']['routes'])
+        #print(results['result']['routes'])
         temp = str(results['result']['routes'])[1:-1]
         temp = temp.replace("'", '"')
         #print(temp)

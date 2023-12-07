@@ -14,6 +14,7 @@ def get_route():
     api = API()
     api.set_json(requestJson)
     return redirect('/route?response='+str(api.get_order()),302)
+
 @app.route('/dist')
 def get_distance():
     cords = request.args.get('cords')

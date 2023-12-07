@@ -14,11 +14,12 @@ def format_req(cords):
             #print (i)
             temp += '{ "pickup":{ "id": ' + str(i) + ',"location_index": 0 ,"service": 600}, "delivery": { "id": ' + str(i) + ',"location_index": ' + str(i) + ',"service": 600 }, "amount": [1]}'
             if ((i) != (len(temp1)-1)):
-                print(str(i) + ' ' +str(((len(temp1)-1))))
+                #print(str(i) + ' ' +str(((len(temp1)-1))))
                 temp += ','
 
         finalJson = firstPart + temp+']}'
         #finalJson = json.loads(finalJson)
+        print(finalJson)
         return (finalJson)
     else:
         return 0
