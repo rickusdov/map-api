@@ -4,6 +4,7 @@ import requests
 from form_request import format_req
 import json
 import subprocess
+from response_to_json import to_json
 app = Flask(__name__)
 
 @app.route('/')
@@ -20,42 +21,50 @@ def get_route():
     requestJson = format_req(cords)
     api = API()
     api.set_json(requestJson)
+    #resp = (to_json(str(api.get_order())))
+    #print(to_json(api.get_order()))
     if api.set_json(requestJson) != 0:
-        return redirect('/route?response='+str(api.get_order()),302)
+        resp = (to_json(str(api.get_order())))
+        #return render_template('home.html', resp = resp)
     else:
-        return redirect('/route?response=0', 302)
+        resp = 'Per daug masinu vienam uzsakymui'
+    return render_template('home.html', resp=resp)
 @app.route('/dist')
 def get_distance():
     cords = request.args.get('cords')
     requestJson = format_req(cords)
     api = API()
     api.set_json(requestJson)
+    resp = (to_json(str(api.get_distance())))
     if api.set_json(requestJson) != 0:
-        #print(api.get_distance())
-        return redirect('/dist?response='+str(api.get_distance()),302)
+        resp = (to_json(str(api.get_distance())))
+        #return render_template('home.html', resp = resp)
     else:
-        return redirect('/dist?response=0', 302)
+        resp = 'Per daug masinu vienam uzsakymui'
+    return render_template('home.html', resp=resp)
 @app.route('/dur')
 def get_duration():
     cords = request.args.get('cords')
     requestJson = format_req(cords)
     api = API()
     api.set_json(requestJson)
+    resp = (to_json(str(api.get_duration())))
     if api.set_json(requestJson) != 0:
-        return redirect('/dur?response=' + str(api.get_duration()), 302)
+        resp = (to_json(str(api.get_duration())))
+        #return render_template('home.html', resp = resp)
     else:
-        return redirect('/dur?response=0', 302)
-@app.errorhandler(500)
-def pageNotFound(error):
-    resp = request.args.get('response')
-    if (resp != None):
-        return "<p>"+resp+"</p>"
-    else:
-        return redirect(request.url, code=302)
-
-@app.errorhandler(404)
-def internalerror(error):
-    return render_template('home.html')
+        resp = 'Per daug masinu vienam uzsakymui'
+    return render_template('home.html', resp=resp)
+# @app.errorhandler(500)
+# def pageNotFound(error):
+#     resp = request.args.get('response')
+#     if (resp != None):
+#         return "<p>"+resp+"</p>"
+#
+#
+# @app.errorhandler(404)
+# def internalerror(error):
+#     return render_template('home.html')
 if __name__ == "__main__":
     app.run()
     api = API()

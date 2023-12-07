@@ -1,10 +1,11 @@
 import json
 def format_req(cords):
     cords = str(cords)
+    cords = ''.join(cords.split())
     temp1 = cords.split('",')
-    print(cords)
+    #print(cords)
     if (len(temp1) <= 9):
-        print(len(temp1))
+        #print(len(temp1))
 
         #finalJson = 'ddd' + args.get('description')
         firstPart = ('{ "description":"route ", "locations": { "id": 2, "location": '
@@ -19,7 +20,7 @@ def format_req(cords):
 
         finalJson = firstPart + temp+']}'
         #finalJson = json.loads(finalJson)
-        print(finalJson)
+        #print(finalJson)
         return (finalJson)
     else:
         return 0

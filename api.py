@@ -40,6 +40,7 @@ class API:
         url = f'https://api.nextbillion.io/optimization/v2/result?id={id}&key={self.key}'
         r = requests.get(url)
         results = r.json()
+        #print (results)
         temp = ''
         #print(results['result']['routes'])
         temp = str(results['result']['routes'])[1:-1]
@@ -71,4 +72,5 @@ class API:
                         order_list.append(temp)
         #print(order_list)
         clean_list = list(dict.fromkeys(order_list))
+        #print(clean_list)
         return clean_list
