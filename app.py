@@ -55,12 +55,10 @@ def get_duration():
     else:
         resp = 'Per daug masinu vienam uzsakymui'
     return render_template('home.html', resp=resp)
-# @app.errorhandler(500)
-# def pageNotFound(error):
-#     resp = request.args.get('response')
-#     if (resp != None):
-#         return "<p>"+resp+"</p>"
-#
+@app.errorhandler(500)
+def pageNotFound(error):
+    return redirect(request.url, code=302)
+
 #
 # @app.errorhandler(404)
 # def internalerror(error):
