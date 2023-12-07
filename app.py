@@ -10,6 +10,7 @@ app = Flask(__name__)
 def get_id():
     cords = request.args.get('cords')
     requestJson = format_req(cords)
+
     api = API()
     api.set_json(requestJson)
     return '<p>'+str(api.get_id())+'</p>'
@@ -20,7 +21,7 @@ def get_route():
     api = API()
     api.set_json(requestJson)
     if api.set_json(requestJson) != 0:
-        return redirect('/route?response='+str(api.get_distance()),302)
+        return redirect('/route?response='+str(api.get_order()),302)
     else:
         return redirect('/route?response=0', 302)
 @app.route('/dist')
@@ -30,6 +31,7 @@ def get_distance():
     api = API()
     api.set_json(requestJson)
     if api.set_json(requestJson) != 0:
+        print(api.get_distance())
         return redirect('/dist?response='+str(api.get_distance()),302)
     else:
         return redirect('/dist?response=0', 302)
@@ -43,17 +45,17 @@ def get_duration():
         return redirect('/dur?response=' + str(api.get_duration()), 302)
     else:
         return redirect('/dur?response=0', 302)
-# @app.errorhandler(500)
-# def pageNotFound(error):
-#     resp = request.args.get('response')
-#     if (resp != ''):
-#         return "<p>"+resp+"</p>"
-#     else:
-#         return '<p>request empty</p>'
+@app.errorhandler(500)
+def pageNotFound(error):
+    resp = request.args.get('response')
+    if (resp != None):
+        return "<p>"+resp+"</p>"
+    else:
+        return render_template('home.html')
 
-# @app.errorhandler(404)
-# def internalerror(error):
-#     return render_template('home.html')
+@app.errorhandler(404)
+def internalerror(error):
+    return render_template('home.html')
 if __name__ == "__main__":
     app.run()
     api = API()

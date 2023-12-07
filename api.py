@@ -28,7 +28,7 @@ class API:
 
     def get_duration(self):
         id = self.get_id()
-        print(id)
+        #print(id)
         url = f'https://api.nextbillion.io/optimization/v2/result?id={id}&key={self.key}'
         r = requests.get(url)
         results = r.json()
