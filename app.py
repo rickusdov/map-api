@@ -6,6 +6,11 @@ import json
 import subprocess
 from response_to_json import to_json
 app = Flask(__name__)
+from rev_form_request import rev_form_request
+from route_on_maps import generate_google_maps_url
+
+
+
 
 @app.route('/')
 def get_id():
@@ -24,11 +29,45 @@ def get_route():
     #resp = (to_json(str(api.get_order())))
     #print(to_json(api.get_order()))
     if api.set_json(requestJson) != 0:
-        resp = (to_json(str(api.get_order())))
+
+        cords = cords.replace(' ', '')
+        cords = cords[1:-1]
+        cords = cords.split('","')
+        cords = str(cords)
+        cords = cords.replace('"',"'").replace("[''","['[").replace("'']","]']").replace("',", "]',").replace(", '", ", '[")
+
+        print(cords)
+        print(str(api.get_order()))
+        url = generate_google_maps_url(str(api.get_order()))
+        url_old = generate_google_maps_url(cords)
+        resp = (to_json(str(api.get_order()), str(api.get_duration()), str(api.get_distance())))
+    else:
+        url = ''
+        resp = 'Per daug masinu vienam uzsakymui'
+    return render_template('home.html', resp=resp, url = url, url_old=url_old)
+@app.route('/rev-route')
+def get_rev_route():
+    cords = request.args.get('cords')
+    requestJson = rev_form_request(cords)
+    api = API()
+    api.set_json(requestJson)
+    if api.set_json(requestJson) != 0:
+        cords = cords.replace(' ', '')
+        cords = cords[1:-1]
+        cords = cords.split('","')
+        cords = str(cords)
+        cords = cords.replace('"',"'").replace("[''","['[").replace("'']","]']").replace("',", "]',").replace(", '", ", '[")
+
+        print(cords)
+        print(str(api.get_order()))
+        url = generate_google_maps_url(str(api.get_order()))
+        url_old = generate_google_maps_url(cords)
+        resp = (to_json(str(api.get_order()), str(api.get_duration()), str(api.get_distance())))
         #return render_template('home.html', resp = resp)
     else:
+        url = ''
         resp = 'Per daug masinu vienam uzsakymui'
-    return render_template('home.html', resp=resp)
+    return render_template('home.html', resp=resp, url = url,url_old=url_old)
 @app.route('/dist')
 def get_distance():
     cords = request.args.get('cords')
