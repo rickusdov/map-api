@@ -4,7 +4,7 @@ def rev_form_request(cords):
     cords = ''.join(cords.split())
     temp1 = cords.split('",')
     #print(cords)
-    if (len(temp1) <= 9):
+    if (len(temp1) <= 90):
         #print(len(temp1))
 
         #finalJson = 'ddd' + args.get('description')

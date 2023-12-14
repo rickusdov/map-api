@@ -14,12 +14,7 @@ from route_on_maps import generate_google_maps_url
 
 @app.route('/')
 def get_id():
-    cords = request.args.get('cords')
-    requestJson = format_req(cords)
-
-    api = API()
-    api.set_json(requestJson)
-    return '<p>'+str(api.get_id())+'</p>'
+    return '<p>no cords</p>'
 @app.route('/route')
 def get_route():
     cords = request.args.get('cords')

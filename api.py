@@ -15,6 +15,7 @@ class API:
         headers = {'Content-Type': 'application/json'}
         r = requests.post(url, json=self.request_json, headers=headers)
         results = r.json()
+
         if results['status'] == 'Ok':
             return results['id']
 

@@ -4,7 +4,7 @@ def format_req(cords):
     cords = ''.join(cords.split())
     temp1 = cords.split('",')
     #print(cords)
-    if (len(temp1) <= 9):
+    if (len(temp1) <= 90):
         #print(len(temp1))
 
         #finalJson = 'ddd' + args.get('description')
@@ -13,7 +13,8 @@ def format_req(cords):
         temp = ''
         for i in range(1, len(temp1) ,1):
             #print (i)
-            temp += '{ "pickup":{ "id": ' + str(i) + ',"location_index": 0 ,"service": 600}, "delivery": { "id": ' + str(i) + ',"location_index": ' + str(i) + ',"service": 600 }, "amount": [1]}'
+
+            temp += '{ "pickup":{ "id": ' + str(i) + ',"location_index": 0 }, "delivery": { "id": ' + str(i) + ',"location_index": ' + str(i) + '}, "amount": [1]}'
             if ((i) != (len(temp1)-1)):
                 #print(str(i) + ' ' +str(((len(temp1)-1))))
                 temp += ','

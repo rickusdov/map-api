@@ -1,0 +1,29 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Route between coordinates</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDASBTnGRivEY_QEF4ZPlyScXSFDACrG6U"></script>
+  </head>
+  <body>
+    <div id="map" style="height: 500px; width: 100%;"></div>
+    <script>
+      function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 6,
+          center: {lat: 48.8566, lng: 2.3522},
+        });
+        var decodedPath = google.maps.geometry.encoding.decodePath('egeiHqrjMvoT|rDvy^kwXngbAqrx@zziAyi|Czit@okgApqe@wruAnzn@_n_Ad}NiuV~bc@hU|bvAwsHlumAj~Zj``AyoVjra@wp@jh`@x{GbeiAo_NhorAtxN`~i@d~Jjjf@inLzbh@ksRja`@era@bq|@grb@dpT_rQu`Mf~H{yu@pai@ctlAjnh@gy`@jab@wri@kcH_kmAqvTksjCvrHg|c@gvBsxKn~SktFlhgAwlA`ogC|sGd~jA{jO|aVmfHtgYb}c@hqv@nv[xsq@||z@znsBnrExp{@rqWnri@xDztwAtxA|fe@f~W|xPpda@`rM`aZ_cE~r{@{`_@l}i@ngVxuUglcAv_Ksit@vba@seVpahAugq@fhr@{hrDzaD}nrAy|g@glrAsmuAmhyDn~]sacAr_OgnhBnq]ygxDwlIkivAipSi`dAgt]qbv@koKmdw@mgQ}eyAekaAaa_Aazc@q{eA{{s@p{E_oh@qib@g|_Am_c@iw_@c}Uq~PnzMctu@f_Cev_@rdMwmWbbHw`T{eKk_j@oxn@{fR|rIyrOkil@e_k@e_@snWgd[wu^lpIqfk@abL{xHafMcxk@abPccXkzTclx@o{w@m_kApbHin{@siVuwdAd`Cq}]}mQyiCmpbAmvJu|gA_rY}lk@gdbA}et@uqw@}o]mm]euUc_]pL_qy@yxJeb`As|Qo_fAuzo@w_pAumR}daAkk|Awfx@ujsAe_Kqie@d_BjoZr~`@xn^buZzjy@|s_AzrzAtnd@tmVnnf@}`@~nmAdor@nxa@nvOtdb@rjDjfy@brFvd\x_Anf]`nYxnw@hsXhfeAzuy@vvj@anDbff@qqVfpoAkbh@dwoAiiCsnk@dJuqtAdyVoheAftk@s`n@n`Aoi`@sw\u{v@qdj@{e`Acda@{yr@ajBytcAgtK{hdAaq_@i~a@_v]y|Zb|^yrSnu^u__@nla@qdf@|qBg`ZlmWos\pf}BewOrzbDcu]fkn@ucx@npW}bl@ess@szi@_jX{ck@xuGirHpeGnyMmdDfsg@ekK`jh@lbYjlg@lgr@lkw@usR|do@yjN||c@ize@haJslWhzQdtHz{d@tqUnbdAzmc@jwNdpo@|__@zqV~dr@uyQ~tUrgNdvIxch@tp^`x{A|kiApm^pxO}o@`nJhkp@e`_Alq|@ko[dg|A{rq@bkoAymW|c_@pXa_A|tq@{pw@~{f@}r`BrlLknr@vhb@a~^|l{@may@fqhBdCt}^skaCzq[utE`a_@hhVvzQgbH');
+        var path = new google.maps.Polyline({
+          path: decodedPath,
+          geodesic: true,
+          strokeColor: '#FF0000',
+          strokeOpacity: 1.0,
+          strokeWeight: 2
+        });
+        path.setMap(map);
+      }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDASBTnGRivEY_QEF4ZPlyScXSFDACrG6U&callback=initMap"></script>
+  </body>
+</html>
